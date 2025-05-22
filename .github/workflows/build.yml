@@ -16,13 +16,16 @@ jobs:
           cache: maven
 
       - name: Configure Maven settings
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          TOKEN_REF: ${{secrets.TOKEN_REF}}
         uses: s4u/maven-settings-action@v3.1.0
         with:
           servers: |
             [{
               "id": "github",
-              "username": "${{ secrets.USERNAME }}",
-              "password": "${{ secrets.TOKEN_REF }}"
+              "username": "${env.USERNAME}",
+              "password": "${env.TOKEN_REF}"
             }]
           githubServer: false
 
