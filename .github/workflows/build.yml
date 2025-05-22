@@ -12,7 +12,7 @@ jobs:
           githubServer: false
           servers: |
             [{
-                "id": "github",
+                "id": "github-ntfy",
                 "username": "${{ secrets.USERNAME }}",
                 "password": "${{ secrets.TOKEN }}"
             }]
