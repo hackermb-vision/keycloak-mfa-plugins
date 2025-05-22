@@ -17,12 +17,7 @@ jobs:
       - name: Setup Settings
         uses: s4u/maven-settings-action@v3.1.0
         with:
-          servers: |
-            [{
-                "id": "github-ntfy",
-                "username": "${{ secrets.USERNAME }}",
-                "password": "${{ secrets.TOKEN }}"
-            }]
+          servers: '[{"id": "github-ntfy", "username": "${{ secrets.USERNAME }}", "password": "${{ secrets.TOKEN }}"}]'
       - name: Build with Maven
         run: mvn -B install --file pom.xml
       - run: |
