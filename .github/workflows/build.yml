@@ -14,11 +14,18 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: maven-settings
-        uses: s4u/maven-settings-action@v2
+
+      - name: Configure Maven settings
+        uses: s4u/maven-settings-action@v3.1.0
         with:
-          servers: '[{"id": "github", "username": "${{secrets.USERNAME}}", "password": "${{secrets.TOKEN_REF}}"}]'
+          servers: |
+            [{
+              "id": "github",
+              "username": "${{ secrets.USERNAME }}",
+              "password": "${{ secrets.TOKEN_REF }}"
+            }]
           githubServer: false
+
       - name: Build with Maven
         run: mvn -B install --file pom.xml
       - run: |
