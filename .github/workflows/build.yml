@@ -16,18 +16,19 @@ jobs:
           cache: maven
 
       - name: Configure Maven settings
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          TOKEN_REF: ${{secrets.TOKEN_REF}}
-        uses: s4u/maven-settings-action@v3.1.0
-        with:
-          servers: |
-            [{
-              "id": "github",
-              "username": "${env.USERNAME}",
-              "password": "${env.TOKEN_REF}"
-            }]
-          githubServer: false
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+          <servers>
+           <server>
+             <id>github</id>
+             <username>\${{ secrets.USERNAME }}</username>
+             <password>\${{ secrets.TOKEN_REF }}</password>
+           </server>
+          </servers>
+          </settings>
+          EOF
 
       - name: Build with Maven
         run: mvn -B install --file pom.xml
