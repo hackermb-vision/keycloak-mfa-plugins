@@ -2,7 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
+    <repositories>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages Repo</name>
+			<url>https://maven.pkg.github.com/MaheshBabu11/ntfy-java</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<parent>
         <artifactId>keycloak-mfa-tools</artifactId>
         <groupId>netzbegruenung</groupId>
         <version>26.1.5</version>
@@ -12,11 +22,11 @@
     <artifactId>app-authenticator</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.google.firebase</groupId>
-            <artifactId>firebase-admin</artifactId>
-            <version>9.4.3</version>
-        </dependency>
+		<dependency>
+			<groupId>com.github.maheshbabu11</groupId>
+			<artifactId>ntfy.java</artifactId>
+			<version>1.0.4-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-quarkus-server-app</artifactId>
@@ -60,6 +70,24 @@
 				<configuration>
 					<argsString>start-dev --db-url jdbc:h2:file:${project.parent.basedir}/h2db/app;AUTO_SERVER=TRUE;NON_KEYWORDS=VALUE</argsString>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assemble-all</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
         </plugins>
     </build>
