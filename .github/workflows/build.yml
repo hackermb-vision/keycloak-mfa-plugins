@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: s4u/maven-settings-action@v3.1.0
         with:
-          githubServer: false
+          githubServer: true
           servers: |
             [{
                 "id": "github-ntfy",
