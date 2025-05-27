@@ -1,5 +1,8 @@
 name: Reusable build workflow
 
+permissions:
+  packages: read
+
 on: workflow_call
 
 jobs:
