@@ -6,7 +6,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages Repo</name>
-			<url>https://maven.pkg.github.com/MaheshBabu11/ntfy-java</url>
+			<url>https://maven.pkg.github.com/hackermb-vision/ntfy-java</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -23,7 +23,7 @@
 
     <dependencies>
 		<dependency>
-			<groupId>com.github.maheshbabu11</groupId>
+			<groupId>com.github.hackermb-vision</groupId>
 			<artifactId>ntfy.java</artifactId>
 			<version>1.0.4-SNAPSHOT</version>
 		</dependency>
