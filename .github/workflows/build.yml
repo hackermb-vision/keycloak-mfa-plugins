@@ -18,7 +18,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn -B -U clean install --file pom.xml --settings settings.xml
+        run: mvn -B clean install -U --file pom.xml --settings settings.xml
         env:
           USERNAME: ${{ secrets.USERNAME }}
           TOKEN: ${{ secrets.TOKEN }}
