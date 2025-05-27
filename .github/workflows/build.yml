@@ -17,12 +17,18 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+          server-id: github # value of repository/id field of the pom.xml
+          server-username: GITHUB_USER_REF # env variable name for username
+          server-password: GITHUB_TOKEN_REF # env variable name for GitHub Personal Access Token
       - name: Setup Settings
         uses: s4u/maven-settings-action@v3.1.0
         with:
           githubServer: 'true'
       - name: Build with Maven
-        run: mvn -B install --file pom.xml
+        run: mvn -Pgithub -B install --file pom.xml
+        env:
+          GITHUB_USER_REF: ${{ secrets.USERNAME }}
+          GITHUB_TOKEN_REF: ${{ secrets.TOKEN }}
       - run: |
           mkdir staging
           cp sms-authenticator/target/*.jar staging
