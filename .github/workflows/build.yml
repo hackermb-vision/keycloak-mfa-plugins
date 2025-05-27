@@ -25,7 +25,7 @@ jobs:
         with:
           githubServer: 'true'
       - name: Build with Maven
-        run: mvn -Pgithub -B install --file pom.xml
+        run: mvn -Pgithub -B install --file pom.xml -U
         env:
           GITHUB_USER_REF: ${{ secrets.USERNAME }}
           GITHUB_TOKEN_REF: ${{ secrets.TOKEN }}
